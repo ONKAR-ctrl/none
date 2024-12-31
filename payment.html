@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - HoodieShop</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        input[type="text"], input[type="number"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Payment</h2>
+        <form id="paymentForm">
+            <label for="cardNumber">Card Number</label>
+            <!-- Ensuring the card number is exactly 16 digits -->
+            <input type="number" id="cardNumber" name="cardNumber" placeholder="Enter your card number" required pattern="/d{16}" maxlength="16" title="Card number must be exactly 16 digits">
+
+            <label for="expiryDate">Expiry Date</label>
+            <!-- Ensuring that only numbers are input and format is MM/YY -->
+            <input type="number" id="expiryDate" name="expiryDate" placeholder="MM/YY" required pattern="/d{2}\/d{2}" title="Expiry date must be in MM/YY format (numbers only)">
+
+            <label for="cvv">CVV</label>
+            <!-- Ensuring the CVV is exactly 3 digits -->
+            <input type="number" id="cvv" name="cvv" placeholder="Enter CVV" required pattern="/d{3}" maxlength="3" title="CVV must be exactly 3 digits">
+
+            <button type="submit">Complete Payment</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Assume payment is processed successfully here
+
+            alert("Order Placed!");
+            localStorage.setItem('cart', JSON.stringify([]));  // Clear the cart after successful payment
+            window.location.href = "orderConfirmation.html";  // Redirect to order confirmation page
+        });
+    </script>
+</body>
+</html>
